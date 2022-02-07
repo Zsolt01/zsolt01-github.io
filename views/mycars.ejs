@@ -1,0 +1,20 @@
+<%- include('header', {pagetitle: 'Hirdetéseim'}) -%> 
+<%- include('navbar-user') -%> 
+
+
+  <div class="container py-4">
+    <div class="row d-flex justify-content-center">
+      <h3 class="d-flex justify-content-center">Hirdetéseim</h3>
+      <p class="d-flex justify-content-end"><a class="btn btn-outline-secondary" type="button" href="/mycars/new">Új hirdetés hozzáadása</a></p> 
+      <% if(typeof empty !== 'undefined') { %><p class="d-flex justify-content-center"><%= empty%> </p> <% } else { %> 
+      <% mycars.forEach((mycar) => { %> 
+      <div class="card mx-1 my-1 btn-light d-flex justify-content-end col-md-4"
+        <% if(typeof mycar.images[0] !== 'undefined') {%>style="height: 18rem; background-size: cover; background-image: url('images/<%= mycar.images[0]%>');"<% } else { %> style="height: 18rem; background-size: cover; background-image: url('images/no-photo-available.png');" <% }; %> >
+        <span class="card-title border-light bg-light d-flex justify-content-center rounded-pill mx-1"><%= mycar.make %> <%= mycar.model %> </span>
+        <a href="mycar/<%= mycar._id %> " class="stretched-link"></a>
+      </div>
+      <% }); }; %> 
+    </div>
+  </div>
+
+<%- include('footer') -%> 

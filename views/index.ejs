@@ -1,0 +1,17 @@
+<%- include('header', {pagetitle: 'Főoldal'}) -%> 
+<% if (loggedIn) {%> <%- include('navbar-user') -%> <% } else { %> <%- include('navbar-visitor') -%><% }; %>  
+
+  <div class="container py-4">
+
+
+    <div class="p-5 mb-4 bg-light rounded-3" style="background-image:url('https://www.griffinmill.co.uk/uploads/images/electric-landing-hero-large/163714131520nissanLeafdesertHERO.jpg')">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Eladó az autód?</h1>
+        <h1 class="display-5 fw-bold">Autót vennél?</h1>
+        <p class="col-md-8 fs-4">Jó helyen jársz! Hirdesd meg autódat vagy böngéssz a hirdetések között</p>
+        <a class="btn btn-outline-dark btn-lg" type="button" href="/cars"><h4>Mutasd az autókat</h4></a>
+        <a class="btn btn-outline-dark btn-lg" type="button" <% if(loggedIn) {%> href="/mycars" <% } else { %> href="/login" <% }; %>  ><h4>Hirdetni szeretnék</h4></a>
+      </div>
+    </div>
+  </div>
+<%- include('footer') -%> 

@@ -1,0 +1,31 @@
+<%- include('header', {pagetitle: 'Profilom'}) -%>
+  <%- include('navbar-user') -%>
+
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="mx-1 col-4">
+          <h3>Profilom</h3>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Felhasználónév:</th>
+                <td><%= user.name %></td>
+              </tr>
+              <tr>
+                <th scope="row">Telefonszám:</th>
+                <td><%= user.tel %></td>
+              </tr>
+              <tr>
+                <th scope="row">Email-cím:</th>
+                <td><%= user.email %> </td>
+              </tr>
+            </tbody>
+          </table>
+          <a class="mx-2 my-2 btn btn-outline-primary" type="button" href="/myprofile/<%= user._id %>/edit" >Módosítás</a>
+          <a class="mx-2 my-2 btn btn-outline-danger" type="button" href="/myprofile/<%= user._id %>/delete">Profil törlése</a>
+        </div>
+      </div>
+
+    </div>
+    <%- include('footer') -%>

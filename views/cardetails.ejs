@@ -1,0 +1,73 @@
+<%- include('header', {pagetitle: car.make + ' ' + car.model}) -%>
+<% if (loggedIn) {%> <%- include('navbar-user') -%> <% } else { %> <%- include('navbar-visitor') -%><% }; %> 
+
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-lg-6">
+          <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <% for(let i = 0; i < car.images.length; i++) {%> 
+              <button type="button" data-bs-target="#carousel" data-bs-slide-to="<%=i%>" <% if(i === 0) {%>  class="active"<% }; %>  aria-current="true" aria-label="Slide <%=i+1%> "></button>
+                <% }; %> 
+            </div>
+
+            <div class="carousel-inner">
+              <% for(let i = 0; i < car.images.length; i++) {%> 
+              <div class="carousel-item <% if(i === 0) {%> active <% }; %> ">
+                <img src="/images/<%=car.images[i]%> " class="d-block w-100" style="min-height: 22rem; object-fit: contain; overflow: hidden;" alt="https://www.auto-data.net/images/f107/BMW-M3-G80.jpg">
+              </div>
+              <% }; %> 
+            
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+          </div>
+         
+        </div>
+        <div class="mx-1 col-lg-4">
+          <h3><%= car.make %> <%= car.model %>  </h3>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row">Évjárat:</th>
+                <td><%= car.regFrom %></td>
+              </tr>
+              <tr>
+                <th scope="row">Futásteljesítmény:</th>
+                <td><%= car.mileage %> km</td>
+              </tr>
+              <tr>
+                <th scope="row">Ár:</th>
+                <td><%= car.price %> Ft</td>
+              </tr>
+              <tr>
+                <th>Leírás</th>
+                <td><%=car.description%></td>
+              </tr>
+            </tbody>
+          </table>
+          <% if(!loggedIn || car._owner != user._id) {%> 
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row">Tulajdonos</th>
+                  <th scope="row">Telefonszám</th>
+                </tr>
+                <tr>
+                  <td><%= ownerName %></td>
+                  <td><i class="fas fa-phone"></i><i><%= ownerTel %></td>
+                </tr>
+              </tbody>
+            </table>
+          <% }; %>
+          <% if(loggedIn && car._owner == user._id) { %><a class="mx-2 my-2 btn btn-outline-primary" type="button" href="/mycar/<%= car._id %>/edit" >Módosítás</a>
+          <a class="mx-2 my-2 btn btn-outline-danger" type="button" href="/mycar/<%= car._id %>/delete">Törlés</a> <% }; %> 
+        </div>
+      </div>
+
+    </div>
+    <%- include('footer') -%>

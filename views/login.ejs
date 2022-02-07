@@ -1,0 +1,39 @@
+<%- include('header', {pagetitle: 'Bejelentkezés'}) -%>
+<%- include('navbar-visitor') -%> 
+
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg-4 col-2"></div>
+            <div class="col-lg-4 col-8 bg-light py-4 rounded-3 p-5 ">
+                <form method="POST">
+                    <div class="mb-3">
+                        <h3>Bejelentkezés</h3>
+                    </div>
+                    <% if (typeof userError !== 'undefined') { %>
+                        <div class="alert alert-danger"><%= userError%></div>
+                    <% } %> 
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email cím</label>
+                        <input type="email" class="form-control" name="email" aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Jelszó</label>
+                        <input type="password" class="form-control" name="password" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Emlékezz rám</label>
+                    </div>
+                    <input type="submit" class="btn btn-outline-dark mb-3" value="Bejelentkezés">
+                    <div class="mb-6">
+                        <a class="btn-link" href="register">Elfelejtettem a jelszavam</a>
+                        <p>Nincs még fiókod?
+                        <a class="btn-link" href="register">Regisztrálj</a></p>
+                    </div> 
+            </div>
+            <div class="col-lg-4 col-2"></div>
+        </div>
+    </div>
+    </form>
+
+<%- include('footer') -%> 

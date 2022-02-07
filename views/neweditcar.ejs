@@ -1,0 +1,75 @@
+<%- include('header', {pagetitle:  'Szerkesztés' }) -%>
+    <%- include('navbar-user') -%>
+
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-2 col-lg-3"></div>
+                <div class="col-md-8 col-lg-6 bg-light py-4 rounded-3 p-5 ">
+                    <div class="mb-3">
+                        <% if(typeof car !=='undefined' ) { %>
+                            <h3>Hirdetés szerkesztése</h3>
+                            <% }; %>
+                                <% if (typeof car==='undefined' ) { %>
+                                    <h3>Új hirdetés</h3>
+                                    <% }; %>
+                    </div>
+                    <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="make" class="form-label">Autó gyártója</label>
+                        <input type="text" class="form-control" name="make" <% if(typeof car !=='undefined' ) { %>
+                        value="<%= car.make %>" <% }; %> required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="model" class="form-label">Modell</label>
+                        <input type="text" class="form-control" name="model" <% if(typeof car !=='undefined' ) { %>
+                        value="<%= car.model %>" <% }; %> required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="regFrom" class="form-label">Autó évjárata</label>
+                        <input type="number" class="form-control" name="regFrom" <% if(typeof car !=='undefined' ) { %>
+                        value="<%= car.regFrom %>" <% }; %> required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mileage" class="form-label">Futásteljesítmény</label>
+                        <input type="number" class="form-control" name="mileage" <% if(typeof car !=='undefined' ) { %>
+                        value="<%= car.mileage %>" <% }; %> required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Autó ára (Ft)</label>
+                        <input type="number" class="form-control" name="price" <% if(typeof car !=='undefined' ) { %>
+                        value="<%= car.price %>" <% }; %> required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Leírás</label>
+                        <textarea class="form-control" name="description" rows="3" required><% if(typeof car !=='undefined' ) {%><%= car.description %><% }; %></textarea>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="photos" class="form-label">Fényképek</label>
+                        <input class="form-control" type="file" name="photos" multiple>
+                        <% if(typeof car.images !== 'undefined') { for(let i=0; i < car.images.length; i++) { %> 
+                            <div class="row col-4 my-2">
+                            <label class="form-check-label" for="<%=i%>checkimage">
+                            <div class="card form-check" style="height: 5rem; background-image: url('/images/<%=car.images[i]%>'); background-size: cover;" >
+                                <input class="form-check-input" type="checkbox" value="" id="<%=i%>checkimage" name="<%=i%>">
+                            </div>
+                        </div>
+                    </label>
+                        <% }; %>
+                        <small>Jelöld be azokat a korábban feltöltött képeket, amiket törölni szeretnél</small> 
+                        <% }; %> 
+                    </div>
+
+                    <input type="submit" class="btn btn-outline-primary mb-3" <% if(typeof car !=='undefined' ) { %>
+                    value="Módosítások mentése"
+                    <% } else { %>
+                        value="Hirdetés feladása"
+                        <% }; %>>
+                            <a type="button" class="btn btn-outline-danger mb-3" href="/mycars">Mégse</a>
+
+                </div>
+                <div class="col-md-2 col-lg-3"></div>
+            </div>
+        </div>
+        </form>
+
+        <%- include('footer') -%>
